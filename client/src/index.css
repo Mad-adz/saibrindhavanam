@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+* {
+
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 6px;
+}
+
+html::-webkit-scrollbar-track {
+  background: rgb(200, 200, 200);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgb(255, 255, 255) !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 36px !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgb(255, 255, 255) !important;
+}
