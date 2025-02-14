@@ -10,3 +10,4 @@ export const MobileNav = lazy(() => import("./nav/MobileNav"));
 
 export const HeroSlider = lazy(() => import("./HeroSlider"));
 
+export const PanoramicBanner = lazy(() => import("./PanoramicBanner"));

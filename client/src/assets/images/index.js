@@ -16,11 +16,14 @@ export { default as heroSliderImg5 } from "./hero_slider/5.jpg";
 
 export { default as youtubeLogo } from "./youtube-96.png";
 
+export { default as lordGaneshBanner } from "./lord_ganesh_banner.jpg";
 export { default as aboutBanner } from "./about_banner.jpg";
 export { default as donateBanner } from "./donate_banner.jpg";
 export { default as tourismBanner } from "./tourism_banner.jpg";
 export { default as initiativesBanner } from "./initiatives_banner.jpg";
 export { default as contactBanner } from "./contact_banner.jpg";
+export { default as constructionBanner } from "./construction_banner.jpg";
+export { default as festivalsBanner } from "./festivals_banner.jpg";
 
 export { default as annadhaanamBanner } from "./annadhaanam/annadhaanam_banner.jpg";
 export { default as annadhaanam1 } from "./annadhaanam/1.jpeg";
@@ -54,9 +57,9 @@ export { default as oldAgeHomeBanner } from "./oldage_home/oldage_home_banner.jp
 export { default as oldAgeHome1 } from "./oldage_home/1.jpg";
 export { default as oldAgeHome2 } from "./oldage_home/2.jpg";
 
-export { default as orphanAgeBanner } from "./orphanage/orphanage_banner.jpg";
-export { default as orphanAge1 } from "./orphanage/1.jpg";
-export { default as orphanAge2 } from "./orphanage/2.jpg";
+export { default as orphanageBanner } from "./orphanage/orphanage_banner.jpg";
+export { default as orphanage1 } from "./orphanage/1.jpg";
+export { default as orphanage2 } from "./orphanage/2.jpg";
 
 export { default as womenEmpowermentBanner } from "./women_empowerment/women_empowerment_banner.jpg";
 export { default as womenEmpowerment1 } from "./women_empowerment/1.jpg";

@@ -2,33 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { LuChevronDown } from "react-icons/lu";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 const DesktopNav = ({ menu }) => {
   console.log(menu);
   const [isHover, toggleHover] = useState(false);
   const toggleHoverMenu = () => {
     toggleHover(!isHover);
   };
-
-  // const subMenuAnimate = {
-  //   enter: {
-  //     opacity: 1,
-  //     rotateX: 0,
-  //     transition: {
-  //       duration: 0.5,
-  //     },
-  //     display: "block",
-  //   },
-  //   exit: {
-  //     opacity: 0,
-  //     rotateX: -15,
-  //     transition: {
-  //       duration: 0.5,
-  //     },
-  //     transitionEnd: {
-  //       display: "none",
-  //     },
-  //   },
-  // };
 
   const subMenuAnimate = {
     enter: {
@@ -56,28 +36,21 @@ const DesktopNav = ({ menu }) => {
   return (
     <motion.span
       className="group/link"
-      // onHoverStart={() => {
-      //   toggleHoverMenu();
-      // }}
-      // onHoverEnd={toggleHoverMenu}
       onMouseEnter={() => toggleHoverMenu()}
       onMouseLeave={() => toggleHoverMenu()}
-      // key={menu.name}
     >
-      <span className="flex items-center gap-1 hover:bg-white/5 cursor-pointer px-3 py-1 rounded-xl">
+      <NavLink
+        to={menu.path}
+        className="flex items-center gap-2 font-semibold text-md hover:text-orange-500 cursor-pointer px-4 py-2 rounded-md"
+      >
         {menu.name}
         {hasSubMenu && (
           <LuChevronDown className="mt-[0.6px] group-hover/link:rotate-180 duration-200" />
         )}
-      </span>
+      </NavLink>
       {hasSubMenu && (
         <motion.div
-          // className="sub-menu"
-          // initial="exit"
-          // animate={isHover ? "enter" : "exit"}
-          // variants={subMenuAnimate}
-          // className="absolute left-0 bg-white shadow-lg p-4 rounded-md"
-          className="absolute top-[5rem] p-[15px] rounded-[6px] origin-[50%_-150px] bg-white"
+          className="absolute top-[5rem] p-[15px] rounded-[6px] origin-[50%_-150px] bg-amber-50 shadow-2xl"
           initial="exit"
           animate={isHover ? "enter" : "exit"}
           variants={subMenuAnimate}
@@ -99,16 +72,18 @@ const DesktopNav = ({ menu }) => {
                       {menu?.subMenuHeading?.[i]}
                     </p>
                   )}
-                  <div className="flex items-center gap-x-4 group/menubox">
-                    <div className="bg-white/5 w-fit p-2 rounded-md group-hover/menubox:bg-white group-hover/menubox:text-gray-900 duration-300">
-                      {/* {submenu.icon && <submenu.icon />} */}
+                  <NavLink
+                    to={submenu.path}
+                    className="flex items-center gap-x-2 group/menubox"
+                  >
+                    <div className="bg-white/5 w-fit p-2 rounded-md group-hover/menubox:bg-amber-100 group-hover/menubox:text-orange-500 duration-300">
                       {submenu.icon && React.createElement(submenu.icon)}
                     </div>
                     <div>
-                      <h6 className="font-semibold">{submenu.name}</h6>
-                      <p className="text-sm text-gray-400">{submenu.desc}</p>
+                      <span className="font-semibold group-hover/menubox:text-orange-500">{submenu.name}</span>
+                      {/* <p className="text-sm text-gray-400">{submenu.desc}</p> */}
                     </div>
-                  </div>
+                  </NavLink>
                 </div>
               ))}
           </div>
