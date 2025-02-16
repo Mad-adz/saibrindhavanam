@@ -4,6 +4,7 @@ export const Home = lazy(() => import("./Home"));
 export const About = lazy(() => import("./About"));
 export const Contact = lazy(() => import("./Contact"));
 export const Tourism = lazy(() => import("./Tourism"));
+export const Donate = lazy(() => import("./Donate"));
 
 export const HomeRenovations = lazy(() =>
   import("./fundraisers/HomeRenovations")

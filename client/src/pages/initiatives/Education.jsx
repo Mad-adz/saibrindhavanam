@@ -1,5 +1,5 @@
 import { education1, education2, educationBanner } from "../../assets/images";
-import { PanoramicBanner } from "../../components";
+import { DynamicSection, PanoramicBanner } from "../../components";
 const Education = () => {
   const educationPageContent = [
     {
@@ -112,6 +112,18 @@ const Education = () => {
       hasList: true,
       hasImage: false,
     },
+    {
+      id: 9,
+      title: "Join Us",
+      description: "",
+      list: [
+        "Together, we can empower the next generation of leaders and change-makers through the gift of education. Get involved today and help us transform lives one student at a time.",
+        "For more information on our Education Sponsorship program or to contribute, please contact us.",
+        "Thank you for supporting education and empowering dreams with Shri Sai Brindhavanam Foundation!",
+      ],
+      hasList: true,
+      hasImage: false,
+    },
   ];
   return (
     <div className="relative">
@@ -120,13 +132,20 @@ const Education = () => {
         title={"Education"}
         description={""}
       />
-      <section className="mt-[30rem] bg-amber-50 py-10">
+      <DynamicSection pageContent={educationPageContent} />
+      {/* <section className="mt-[30rem] bg-amber-50 py-10">
         <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24">
           {educationPageContent.map((value) => (
             <div key={value.id}>
               {value.hasImage ? (
                 <>
-                  <img src={value.imgUrl} alt="" />
+                  <div className="flex justify-center items-center my-4">
+                    <img
+                      src={value.imgUrl}
+                      alt=""
+                      className="w-full md:w-1/2"
+                    />
+                  </div>
                 </>
               ) : (
                 <>
@@ -134,14 +153,14 @@ const Education = () => {
                     {value.title}
                   </h2>
                   <p
-                    className={`text-md indent-8 text-zinc-600 leading-relaxed mb-4 ${
+                    className={`text-md indent-8 text-zinc-600 leading-loose mb-4 ${
                       value.hasList && "font-semibold"
                     }`}
                   >
                     {value.description}
                   </p>
                   {value.list && (
-                    <ul className="list-disc ml-8 text-md leading-relaxed mb-4">
+                    <ul className="list-disc ml-8 text-md leading-loose mb-4">
                       {value.list.map((item, index) => (
                         <li key={index}>
                           {item.label ? (
@@ -166,25 +185,8 @@ const Education = () => {
               )}
             </div>
           ))}
-
-          <div>
-            <h2 className="text-2xl font-bold mb-2 text-orange-500">Join Us</h2>
-            <p className="text-md text-zinc-700 leading-relaxed mb-4">
-              Together, we can empower the next generation of leaders and
-              change-makers through the gift of education. Get involved today
-              and help us transform lives one student at a time.
-            </p>
-            <p className="text-md text-zinc-700 leading-relaxed mb-4">
-              For more information on our Education Sponsorship program or to
-              contribute, please contact us.
-            </p>
-            <p className="text-md text-zinc-700 leading-relaxed mb-4">
-              Thank you for supporting education and empowering dreams with Shri
-              Sai Brindhavanam Foundation!
-            </p>
-          </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

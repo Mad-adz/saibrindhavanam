@@ -18,12 +18,13 @@ export { default as youtubeLogo } from "./youtube-96.png";
 
 export { default as lordGaneshBanner } from "./lord_ganesh_banner.jpg";
 export { default as aboutBanner } from "./about_banner.jpg";
-export { default as donateBanner } from "./donate_banner.jpg";
 export { default as tourismBanner } from "./tourism_banner.jpg";
 export { default as initiativesBanner } from "./initiatives_banner.jpg";
 export { default as contactBanner } from "./contact_banner.jpg";
 export { default as constructionBanner } from "./construction_banner.jpg";
 export { default as festivalsBanner } from "./festivals_banner.jpg";
+export { default as donateBanner } from "./donate_banner.jpg";
+export { default as donateBannerSvg } from "./donate_banner.svg";
 
 export { default as annadhaanamBanner } from "./annadhaanam/annadhaanam_banner.jpg";
 export { default as annadhaanam1 } from "./annadhaanam/1.jpeg";

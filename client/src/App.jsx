@@ -11,6 +11,7 @@ import {
   Annadhaanam,
   Construction,
   Contact,
+  Donate,
   Education,
   Festivals,
   Gowshala,
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
             <Route path="about" element={<About />} />
             <Route path="connect" element={<Contact />} />
             <Route path="tourism" element={<Tourism />} />
+            <Route path="donate" element={<Donate />} />
 
             <Route path="initiatives">
               <Route path="annadhaanam" element={<Annadhaanam />} />
