@@ -21,7 +21,9 @@ import {
   NotFound,
   OldAgeHome,
   Orphanage,
+  PrivacyPolicy,
   SchoolRenovations,
+  TermsAndConditions,
   Tourism,
   WomenEmpowerment,
 } from "./pages";
@@ -37,6 +39,11 @@ const router = createBrowserRouter(
             <Route path="connect" element={<Contact />} />
             <Route path="tourism" element={<Tourism />} />
             <Route path="donate" element={<Donate />} />
+            <Route
+              path="terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
 
             <Route path="initiatives">
               <Route path="annadhaanam" element={<Annadhaanam />} />

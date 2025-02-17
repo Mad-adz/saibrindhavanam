@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { DesktopNav, MobileNav } from ".";
 import { ssbfLogo } from "../assets/images";
-import { Menus } from "../utils/navMenus.js";
+import { Menus } from "../utils/data/header";
 
 const Header = () => {
   return (

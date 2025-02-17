@@ -24,4 +24,7 @@ export const WomenEmpowerment = lazy(() =>
 export const Construction = lazy(() => import("./temple/Construction"));
 export const Festivals = lazy(() => import("./temple/Festivals"));
 
+export const TermsAndConditions = lazy(() => import("./TermsAndConditions"));
+export const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
+
 export const NotFound = lazy(() => import("./NotFound"));

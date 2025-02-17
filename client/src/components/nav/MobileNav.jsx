@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { LuChevronDown, LuX, LuMenu } from "react-icons/lu";
-import { Menus } from "../../utils/navMenus.js";
 import { NavLink } from "react-router-dom";
+import { Menus } from "../../utils/data/header";
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);

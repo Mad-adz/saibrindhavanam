@@ -57,3 +57,7 @@ html::-webkit-scrollbar-thumb:active {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
 }
+
+@theme {
+  --drop-shadow-logo: 0 0 1rem rgba(255, 105, 0, 1); 
+}
