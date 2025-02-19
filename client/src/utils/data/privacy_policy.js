@@ -4,7 +4,7 @@ export const ppContent = {
       id: 1,
       title: "Introduction",
       description:
-        "This Privacy Policy describes how SHRI SAIBRINDHAVANAM FOUNDATION and its affiliates (collectively &quot;SHRI SAIBRINDHAVANAM FOUNDATION, we, our, us&quot;) collect, use, share, protect or otherwise process your information/ personal data through our website https://saibrindhavanam.com (hereinafter referred to as Platform). Please note that you may be able to browse certain sections of the Platform without registering with us.We do not offer any product/service under this Platform outside India and your personal data will primarily be stored and processed in India. By visiting this Platform, providing your information or availing any product/service offered on the Platform, you expressly agree to be bound by the terms and conditions of this Privacy Policy, the Terms of Use and the applicable service/product terms and conditions, and agree to be governed by the laws of India including but not limited to the laws applicable to data protection and privacy. If you do not agree please do not use or access our Platform.",
+        "This Privacy Policy describes how SHRI SAIBRINDHAVANAM FOUNDATION and its affiliates (collectively 'SHRI SAIBRINDHAVANAM FOUNDATION, we, our, us') collect, use, share, protect or otherwise process your information/ personal data through our website https://saibrindhavanam.com (hereinafter referred to as Platform). Please note that you may be able to browse certain sections of the Platform without registering with us.We do not offer any product/service under this Platform outside India and your personal data will primarily be stored and processed in India. By visiting this Platform, providing your information or availing any product/service offered on the Platform, you expressly agree to be bound by the terms and conditions of this Privacy Policy, the Terms of Use and the applicable service/product terms and conditions, and agree to be governed by the laws of India including but not limited to the laws applicable to data protection and privacy. If you do not agree please do not use or access our Platform.",
     },
     {
       id: 2,
@@ -54,21 +54,27 @@ export const ppContent = {
       description:
         "Please check our Privacy Policy periodically for changes. We may update this Privacy Policy to reflect changes to our information practices. We may alert / notify you about the significant changes to the Privacy Policy, in the manner as may be required under applicable laws.",
     },
-    {
-      id: 10,
-      title: "Collection of Personal Data",
-      description: "",
-    },
   ],
   grievanceOfficeData: {
-    name: "Grievance Officer",
-    designation: "",
-    address: "123 Main Street, Anytown, USA",
-    contact: "Phone: 123-456-7890",
-    email: "Email: 123@example.com",
-    website: "Website: www.grievance-officers.com",
+    title: "Grievance Officer",
+    details: [
+      { id: 1, label: "Name of the Officer", value: "[Insert Name]" },
+      { id: 2, label: "Designation", value: "[Insert Designation]" },
+      {
+        id: 3,
+        label: "Company Name & Address",
+        value: "[Insert Company Name & Address]",
+      },
+      { id: 4, label: "Phone", value: "[Insert Phone Number]" },
+      {
+        id: 5,
+        label: "Available",
+        value: "Monday – Friday (9:00 AM – 6:00 PM)",
+      },
+    ],
   },
   refund_and_cancellation: {
+    title: "Refund and Cancellation Policy",
     label:
       "This refund and cancellation policy outlines how you can cancel or seek a refund for a product / service that you have purchased through the Platform. Under this policy:",
     details: [
