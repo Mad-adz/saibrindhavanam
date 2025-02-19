@@ -10,6 +10,8 @@ const TermsAndConditions = () => {
           bgImg={lordGaneshBannerSvg}
           title={"Terms And Conditions"}
           description={""}
+          align={"center"}
+          color={"orange"}
         />
       </div>
       <section className="bg-amber-50 mt-[30rem] py-10">
