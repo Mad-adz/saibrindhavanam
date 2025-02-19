@@ -4,6 +4,7 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
+  Navigate,
 } from "react-router-dom";
 import { RootLayout } from "./layouts";
 import {
@@ -18,7 +19,6 @@ import {
   HealthCare,
   Home,
   HomeRenovations,
-  NotFound,
   OldAgeHome,
   Orphanage,
   PrivacyPolicy,
@@ -27,6 +27,7 @@ import {
   Tourism,
   WomenEmpowerment,
 } from "./pages";
+import { Loader } from "./components";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -64,7 +65,7 @@ const router = createBrowserRouter(
             </Route>
           </Route>
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </>
   )
@@ -72,7 +73,7 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <div>
-      <Suspense fallback={"loading"}>
+      <Suspense fallback={<Loader />}>
         <RouterProvider router={router} />
       </Suspense>
     </div>

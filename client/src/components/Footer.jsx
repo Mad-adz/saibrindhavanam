@@ -1,14 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { ssbfLogo } from "../assets/images";
 import { footerLinks, socialMediaLinks } from "../utils/data/footer";
-import React from "react";
 
 const Footer = () => {
   return (
@@ -22,7 +15,11 @@ const Footer = () => {
                   <Link to="/">
                     <div className="flex items-center space-x-4 text-2xl font-medium">
                       <span>
-                        <img src={ssbfLogo} alt="AI Logo" className="size-20 drop-shadow-logo" />
+                        <img
+                          src={ssbfLogo}
+                          alt="AI Logo"
+                          className="size-20 drop-shadow-logo"
+                        />
                       </span>
                       <span className="text-white text-xl">
                         Shri Sai Brindhavanam

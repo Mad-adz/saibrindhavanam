@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { DesktopNav, MobileNav } from ".";
 import { ssbfLogo } from "../assets/images";
 import { Menus } from "../utils/data/header";
+import { useAudio } from "../context/AudioContext";
+import { LuPause, LuPlay } from "react-icons/lu";
 
 const Header = () => {
+  const { audioRef, isPlaying, togglePlay } = useAudio();
+  console.log({ audioRef, isPlaying });
   return (
     <div>
       <header className="h-20 text-[16px] fixed inset-0 flex-center bg-amber-50 z-50">
@@ -20,6 +24,12 @@ const Header = () => {
             ))}
           </ul>
           <div className="h-full flex items-center gap-x-5">
+            <button
+              onClick={togglePlay}
+              className="bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 transition"
+            >
+              {isPlaying ? <LuPause size={20} /> : <LuPlay size={20} />}
+            </button>
             <Link
               to="donate"
               aria-label="donate"

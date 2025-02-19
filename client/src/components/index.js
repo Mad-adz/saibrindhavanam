@@ -13,3 +13,5 @@ export const HeroSlider = lazy(() => import("./HeroSlider"));
 export const PanoramicBanner = lazy(() => import("./PanoramicBanner"));
 export const DynamicSection = lazy(() => import("./DynamicSection"));
 export const ContactCard = lazy(() => import("./ContactCard"));
+
+export const Loader = lazy(() => import("./Loader"));

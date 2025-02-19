@@ -54,10 +54,63 @@ html::-webkit-scrollbar-thumb:active {
 
 /* Hide scrollbar for Firefox */
 .scrollbar-hidden {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 @theme {
-  --drop-shadow-logo: 0 0 1rem rgba(255, 105, 0, 1); 
+  --drop-shadow-logo: 0 0 1rem rgba(255, 105, 0, 1);
+}
+
+.loader {
+  @apply relative w-[2.5em] h-[2.5em] rotate-[165deg] before:animate-[before8_2s_infinite] after:animate-[after6_2s_infinite] top-[calc(50%_-_1.25em)] left-[calc(50%_-_1.25em)];
+}
+
+.loader:before,
+.loader:after {
+  @apply content-[""] absolute block w-[0.5em] h-[0.5em] -translate-x-2/4 -translate-y-2/4 rounded-[0.25em] left-2/4 top-2/4;
+}
+
+@keyframes before8 {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+
+@keyframes after6 {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
 }

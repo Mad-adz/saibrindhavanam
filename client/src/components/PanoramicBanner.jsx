@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 
-const PanoramicBanner = ({ bgImg, title, description }) => {
+const PanoramicBanner = ({ bgImg, title, description, align, color }) => {
   return (
-    // <section className="h-[480px] absolute left-0 right-0 top-[5rem]">
     <section className="h-[25rem] fixed left-0 right-0 top-[5rem] w-full z-[-1]">
       <div
         className="h-full bg-cover bg-center"
@@ -10,11 +9,20 @@ const PanoramicBanner = ({ bgImg, title, description }) => {
           backgroundImage: `url(${bgImg})`,
         }}
       >
-        <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24">
-          <div className="flex items-center h-full">
-            <div className="flex flex-col justify-center gap-4 text-white  font-bold">
-              <span className="w-full text-2xl">{title}</span>
-              <span className="w-full text-md">{description}</span>
+        <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+        {/* <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24"> */}
+          <div
+            className={`flex items-center h-full ${
+              align === "center" && "justify-center"
+            }`}
+          >
+            <div
+              className={`flex flex-col justify-center items-center gap-4 font-bold ${
+                color === "orange" ? "text-orange-500" : "text-white"
+              }`}
+            >
+              <h3 className={"w-full text-2xl"}>{title}</h3>
+              <p className="w-full text-md">{description}</p>
             </div>
           </div>
         </div>
@@ -27,6 +35,8 @@ PanoramicBanner.propTypes = {
   bgImg: PropTypes.string.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
+  align: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default PanoramicBanner;

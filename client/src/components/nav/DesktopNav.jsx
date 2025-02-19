@@ -4,7 +4,6 @@ import { LuChevronDown } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 const DesktopNav = ({ menu }) => {
-  console.log(menu);
   const [isHover, toggleHover] = useState(false);
   const toggleHoverMenu = () => {
     toggleHover(!isHover);
