@@ -16,6 +16,7 @@ import {
 } from "../assets/images";
 
 const HeroSlider = () => {
+
   const heroSlideImgs = [
     { id: 1, imgSrc: heroSliderImg1 },
     { id: 2, imgSrc: heroSliderImg2 },
@@ -24,8 +25,8 @@ const HeroSlider = () => {
     { id: 5, imgSrc: heroSliderImg5 },
   ];
   return (
-    <section className="h-full">
-      <Swiper 
+    <section className="h-full relative">
+      <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -41,7 +42,11 @@ const HeroSlider = () => {
       >
         {heroSlideImgs.map((slide) => (
           <SwiperSlide key={slide.id} className="h-full">
-            <img src={slide.imgSrc} alt="" className="block w-full h-full object-cover" />
+            <img
+              src={slide.imgSrc}
+              alt=""
+              className="block w-full h-full object-cover"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
