@@ -80,7 +80,6 @@ const DesktopNav = ({ menu }) => {
                     </div>
                     <div>
                       <span className="font-semibold group-hover/menubox:text-orange-500">{submenu.name}</span>
-                      {/* <p className="text-sm text-gray-400">{submenu.desc}</p> */}
                     </div>
                   </NavLink>
                 </div>

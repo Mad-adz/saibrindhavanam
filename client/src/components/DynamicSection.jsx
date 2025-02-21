@@ -3,7 +3,7 @@ const DynamicSection = ({ pageContent }) => {
   return (
     <>
       <section className="mt-[30rem] bg-amber-50 py-10">
-        <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24">
+        <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
           {pageContent.map((value, index) => {
             const isLastItem = index === pageContent.length - 1;
             return (

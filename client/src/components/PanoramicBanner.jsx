@@ -10,7 +10,6 @@ const PanoramicBanner = ({ bgImg, title, description, align, color }) => {
         }}
       >
         <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
-        {/* <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24"> */}
           <div
             className={`flex items-center h-full ${
               align === "center" && "justify-center"

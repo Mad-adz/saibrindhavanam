@@ -42,7 +42,6 @@ const MobileNav = () => {
                 <NavLink
                   to={path}
                   className="flex justify-between items-center p-4 hover:bg-white/5 rounded-md cursor-pointer relative"
-                  // onClick={() => setClicked(isClicked ? null : i)}
                   onClick={() => {
                     if (!hasSubMenu) {
                       setIsOpen(false);
