@@ -1,47 +1,83 @@
 import { contactBanner } from "../assets/images";
 import { ContactCard, PanoramicBanner } from "../components";
+import { contactInformations } from "../utils/data/contact";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 const Contact = () => {
-  const contactInformations = [
-    {
-      id: 1,
-      title: "Corporate Address :",
-      address: {
-        line1: "Shri Sai Brindhavanam Foundation,",
-        line2: "Flat 1A, Block 1, 2A,",
-        line3: "Radha Krishnan Saalai",
-        city: "Valasaravakkam,",
-        district: "Chennai",
-        state: "Tamil Nadu",
-        country: "India.",
-        pin: "600087,",
-      },
-      contact: null,
-    },
-    {
-      id: 2,
-      title: "Temple Address :",
-      address: {
-        line1: "Shri Sai Brindhavanam Temple,",
-        line2: "East Sannanallur, Sannanallur PO,",
-        line3: "Near Nannilam Railway Station",
-        city: "",
-        district: "Nagappattinam",
-        state: "Tamil Nadu",
-        country: "India.",
-        pin: "609504,",
-      },
-      contact: null,
-    },
-    {
-      id: 3,
-      title: "Contact Us :",
-      address: null,
-      contact: {
-        mobile: "+91 9876543210",
-        email: "contact@saibrindhavanam.com",
-      },
-    },
-  ];
+  const [mailData, setMailData] = useState(null);
+  const formSchema = z.object({
+    fname: z
+      .string()
+      .min(1, "First Name is required!")
+      .min(3, { message: "First name must be at least 3 characters!" }),
+    lname: z.string().min(1, "Last Name is required!"),
+    email: z
+      .string()
+      .min(1, { message: "Email is required!" })
+      .email({ message: "Email format is incorrect!" }),
+    message: z.string().min(1, "Message is required!"),
+  });
+
+  const form = useForm({
+    defaultValues: { fname: "", lname: "", email: "", message: "" },
+    resolver: zodResolver(formSchema),
+  });
+
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = form;
+
+  console.log(errors);
+
+  // Display field validation errors
+  useEffect(() => {
+    toast.dismiss();
+    if (errors.fname) {
+      toast.error(errors.fname.message);
+    } else if (errors.lname) {
+      toast.error(errors.lname.message);
+    } else if (errors.email) {
+      toast.error(errors.email.message);
+    } else if (errors.message) {
+      toast.error(errors.message.message);
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    if (mailData) {
+      toast.success("Message sent successfully!");
+      reset();
+    }
+  }, [mailData, reset]);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/contact/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setMailData(result);
+        toast.success(result.message || "Message sent successfully!");
+      } else {
+        toast.error(result.message || "Something went wrong!");
+      }
+    } catch (error) {
+      toast.error("Error submitting form! Try again.");
+      console.error("Error submitting form", error);
+    }
+  };
+
   return (
     <div className="relative">
       <PanoramicBanner
@@ -81,22 +117,26 @@ const Contact = () => {
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3764.9880529096085!2d79.65109025384741!3d10.884839994635295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDUzJzA1LjQiTiA3OcKwMzknMTAuNSJF!5e1!3m2!1sen!2sin!4v1718012348060!5m2!1sen!2sin"
                 width="100%"
                 height="450"
-                allowfullscreen="true"
+                allowFullscreen="true"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-md"
               ></iframe>
             </div>
             <div className="col-span-1 lg:col-span-5">
-              <form className="flex flex-col gap-4 ">
+              <form
+                className="flex flex-col gap-4 "
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="mb-2 text-left font-medium !text-zinc-900">
                       First Name
                     </label>
                     <input
+                      {...register("fname")}
                       placeholder="First Name"
-                      name="first-name"
+                      name="fname"
                       className="block w-full px-5 py-2.5 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -105,8 +145,9 @@ const Contact = () => {
                       Last Name
                     </label>
                     <input
+                      {...register("lname")}
                       placeholder="Last Name"
-                      name="last-name"
+                      name="lname"
                       className="block w-full px-5 py-2.5 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -116,6 +157,7 @@ const Contact = () => {
                     Your Email
                   </label>
                   <input
+                    {...register("email")}
                     placeholder="name@email.com"
                     name="email"
                     className="block w-full px-5 py-2.5 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -126,11 +168,15 @@ const Contact = () => {
                     Your Message
                   </label>
                   <textarea
+                    {...register("message")}
                     className="block w-full h-24 px-5 py-2.5 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-zinc-200 rounded-lg md:h-36 focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Message"
                   />
                 </div>
-                <button className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-orange-500 rounded-lg hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50">
+                <button
+                  type="submit"
+                  className="w-full md:w-2/3 lg:w-1/2 mx-auto px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-orange-500 rounded-lg hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50 cursor-pointer"
+                >
                   Send message
                 </button>
               </form>
