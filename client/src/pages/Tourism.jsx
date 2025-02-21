@@ -80,36 +80,6 @@ const Tourism = () => {
           </div>
         </div>
       </section>
-      {/* <section className="bg-amber-50 py-10">
-        <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {templeDetails.map((temple, index) => (
-              <div
-                key={temple.id}
-                className={`flex flex-col lg:flex-row items-center gap-4 ${
-                  index % 2 === 0 ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                <div className="w-full lg:w-1/2">
-                  <img
-                    src={temple.image}
-                    alt={temple.title}
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  />
-                </div>
-
-                <div className="w-full">
-                  <h2 className="text-2xl font-bold">{temple.title}</h2>
-                  <p className="text-gray-600 font-semibold">{temple.deity}</p>
-                  <p className="text-gray-500">{temple.location}</p>
-                  <p className="mt-2">{temple.description.para1}</p>
-                  <p className="mt-2">{temple.description.para2}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
       <section className="bg-amber-50 py-10">
         <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
           <div className="grid grid-cols-1 gap-12">

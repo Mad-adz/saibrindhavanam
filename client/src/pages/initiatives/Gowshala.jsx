@@ -60,14 +60,6 @@ const Gowshala = () => {
       hasList: true,
       hasImage: false,
     },
-    // {
-    //   id: 5,
-    //   title: "Selection Process",
-    //   description:
-    //     "Our Healthcare Sponsorship program identifies beneficiaries based on financial need, medical urgency, and potential impact on health outcomes. We work closely with healthcare providers, social workers, and community leaders to identify individuals who would benefit most from our support.",
-    //   hasList: false,
-    //   hasImage: false,
-    // },
     {
       id: 5,
       title: "Impact",
@@ -123,60 +115,6 @@ const Gowshala = () => {
         description={""}
       />
       <DynamicSection pageContent={gowshalaPageContent} />
-      {/* <section className="mt-[30rem] bg-amber-50 py-10">
-        <div className="container mx-auto h-full px-4 sm:px-6 md:px-16 lg:px-20 xl:px-24">
-          {gowshalaPageContent.map((value) => (
-            <div key={value.id}>
-              {value.hasImage ? (
-                <>
-                  <div className="flex justify-center items-center my-4">
-                    <img
-                      src={value.imgUrl}
-                      alt=""
-                      className="w-full md:w-1/2"
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-2xl font-bold mb-2 text-orange-500">
-                    {value.title}
-                  </h2>
-                  <p
-                    className={`text-md indent-8 text-zinc-600 leading-loose mb-4 ${
-                      value.hasList && "font-semibold"
-                    }`}
-                  >
-                    {value.description}
-                  </p>
-                  {value.list && (
-                    <ul className="list-disc ml-8 text-md leading-loose mb-4">
-                      {value.list.map((item, index) => (
-                        <li key={index}>
-                          {item.label ? (
-                            <>
-                              <p className="text-zinc-600">
-                                <span className="text-orange-500 font-semibold">
-                                  {item.label} :{" "}
-                                </span>
-                                {item.details}
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <p className="text-zinc-600">{item}</p>
-                            </>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-      </section> */}
     </div>
   );
 };

@@ -37,6 +37,10 @@ const Donate = () => {
               269705001079
             </p>
             <p>
+              <span className="text-zinc-700 font-semibold">Bank : </span>
+              ICICI Bank
+            </p>
+            <p>
               <span className="text-zinc-700 font-semibold">Branch : </span>
               Ramapuram
             </p>
