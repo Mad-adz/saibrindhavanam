@@ -33,6 +33,11 @@ export { default as annadhaanam2 } from "./annadhaanam/2.jpg";
 export { default as construction1 } from "./construction/1.jpeg";
 export { default as construction2 } from "./construction/2.jpeg";
 export { default as construction3 } from "./construction/3.jpeg";
+export { default as construction4 } from "./construction/4.jpeg";
+export { default as construction5 } from "./construction/5.jpeg";
+export { default as construction6 } from "./construction/6.jpeg";
+export { default as construction7 } from "./construction/7.jpeg";
+export { default as construction8 } from "./construction/8.jpeg";
 
 export { default as educationBanner } from "./education/education_banner.jpg";
 export { default as education1 } from "./education/1.jpg";
