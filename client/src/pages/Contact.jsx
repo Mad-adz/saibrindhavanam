@@ -33,11 +33,12 @@ const Contact = () => {
     formState: { errors },
   } = form;
 
-  console.log(errors);
+  // console.log(errors);
 
-  // Display field validation errors
   useEffect(() => {
-    toast.dismiss();
+    if (errors.fname || errors.lname || errors.email || errors.message) {
+      toast.dismiss();
+    }
     if (errors.fname) {
       toast.error(errors.fname.message);
     } else if (errors.lname) {
@@ -51,12 +52,16 @@ const Contact = () => {
 
   useEffect(() => {
     if (mailData) {
-      toast.success("Message sent successfully!");
       reset();
     }
   }, [mailData, reset]);
 
   const onSubmit = async (data) => {
+    // Show loading toast and get its ID
+    const toastId = toast.loading("Sending your message...", {
+      duration: 3000,
+    }); // Loading toast stays for 3s
+
     try {
       const response = await fetch("http://localhost:5000/api/contact/send", {
         method: "POST",
@@ -66,15 +71,22 @@ const Contact = () => {
 
       const result = await response.json();
 
-      if (response.ok) {
-        setMailData(result);
-        toast.success(result.message || "Message sent successfully!");
-      } else {
-        toast.error(result.message || "Something went wrong!");
-      }
+      if (!response.ok)
+        throw new Error(result.message || "Something went wrong!");
+
+      setMailData(result);
+
+      // Remove loading toast & show success toast (visible for 2s)
+      toast.success(result.message || "Message sent successfully!", {
+        id: toastId,
+        duration: 2000,
+      });
     } catch (error) {
-      toast.error("Error submitting form! Try again.");
-      console.error("Error submitting form", error);
+      // Remove loading toast & show error toast (visible for 2s)
+      toast.error(error.message || "Error submitting form! Try again.", {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
@@ -117,7 +129,7 @@ const Contact = () => {
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3764.9880529096085!2d79.65109025384741!3d10.884839994635295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDUzJzA1LjQiTiA3OcKwMzknMTAuNSJF!5e1!3m2!1sen!2sin!4v1718012348060!5m2!1sen!2sin"
                 width="100%"
                 height="450"
-                allowFullscreen="true"
+                allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-md"

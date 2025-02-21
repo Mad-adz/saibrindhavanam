@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import ReactPlayer from "react-player/youtube";
 import { MdClose } from "react-icons/md";
+import PropTypes from "prop-types";
 const SpringModal = ({ isOpen, setIsOpen, videoUrl }) => {
   return (
     <>
@@ -48,6 +49,12 @@ const SpringModal = ({ isOpen, setIsOpen, videoUrl }) => {
       </AnimatePresence>
     </>
   );
+};
+
+SpringModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired, // Boolean indicating modal visibility
+  setIsOpen: PropTypes.func.isRequired, // Function to toggle modal state
+  videoUrl: PropTypes.string.isRequired, // URL string of the video
 };
 
 export default SpringModal;

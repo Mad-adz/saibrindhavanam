@@ -6,8 +6,7 @@ import { useAudio } from "../context/AudioContext";
 import { LuPause, LuPlay } from "react-icons/lu";
 
 const Header = () => {
-  const { audioRef, isPlaying, togglePlay } = useAudio();
-  console.log({ audioRef, isPlaying });
+  const { isPlaying, togglePlay } = useAudio();
   return (
     <div>
       <header className="h-20 text-[16px] fixed inset-0 flex-center bg-amber-50 z-50">

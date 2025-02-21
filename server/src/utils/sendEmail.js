@@ -213,33 +213,31 @@ const userTemplate = `
 
 export const sendEnquiryMail = async (fname, lname, email, message) => {
   try {
+    // const adminMailResponse = await transporter.sendMail(adminMailOptions);
+    // console.log("Admin email sent successfully:", adminMailResponse.messageId);
+
+    // const userMailResponse = await transporter.sendMail(userMailOptions);
+    // console.log("User email sent successfully:", userMailResponse.messageId);
+
+    // return { success: true };
+
+    // # Promise.all() method
+
+    // Compile templates
     const compiledAdminTemplate = ejs.compile(adminTemplate);
+    const compiledUserTemplate = ejs.compile(userTemplate);
 
-    const adminHTML = compiledAdminTemplate({
-      fname,
-      lname,
-      email,
-      message,
-    });
+    // Generate email HTML
+    const adminHTML = compiledAdminTemplate({ fname, lname, email, message });
+    const userHTML = compiledUserTemplate({ fname, lname, email, message });
 
+    // Email options
     const adminMailOptions = {
       from: email,
       to: process.env.NODEMAILER_USER,
       subject: "Enquiry",
       html: adminHTML,
     };
-
-    const adminMailResponse = await transporter.sendMail(adminMailOptions);
-    console.log("Admin email sent successfully:", adminMailResponse.messageId);
-
-    const compiledUserTemplate = ejs.compile(userTemplate);
-
-    const userHTML = compiledUserTemplate({
-      fname,
-      lname,
-      email,
-      message,
-    });
 
     const userMailOptions = {
       from: process.env.NODEMAILER_USER,
@@ -248,14 +246,18 @@ export const sendEnquiryMail = async (fname, lname, email, message) => {
       html: userHTML,
     };
 
-    const userMailResponse = await transporter.sendMail(userMailOptions);
-    console.log("User email sent successfully:", userMailResponse.messageId);
+    // Send both emails in parallel for efficiency
+    const [adminMailResponse, userMailResponse] = await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(userMailOptions),
+    ]);
+
+    console.log("Admin email sent:", adminMailResponse.messageId);
+    console.log("User email sent:", userMailResponse.messageId);
 
     return { success: true };
   } catch (error) {
     console.error("Error sending email:", error);
     return { success: false, error: error.message };
-    // console.log(error);
-    // return { error };
   }
 };
