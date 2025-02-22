@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { apiClient } from "../api/axios";
 const Contact = () => {
   const [mailData, setMailData] = useState(null);
   const formSchema = z.object({
@@ -33,8 +34,6 @@ const Contact = () => {
     formState: { errors },
   } = form;
 
-  // console.log(errors);
-
   useEffect(() => {
     if (errors.fname || errors.lname || errors.email || errors.message) {
       toast.dismiss();
@@ -57,38 +56,61 @@ const Contact = () => {
   }, [mailData, reset]);
 
   const onSubmit = async (data) => {
-    // Show loading toast and get its ID
     const toastId = toast.loading("Sending your message...", {
       duration: 3000,
-    }); // Loading toast stays for 3s
+    });
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await apiClient.post("api/contact/send", data);
+      setMailData(response?.data);
+      // console.log(response.data);
 
-      const result = await response.json();
-
-      if (!response.ok)
-        throw new Error(result.message || "Something went wrong!");
-
-      setMailData(result);
-
-      // Remove loading toast & show success toast (visible for 2s)
-      toast.success(result.message || "Message sent successfully!", {
+      toast.success(response.data.message || "Message sent successfully!", {
         id: toastId,
         duration: 2000,
       });
     } catch (error) {
-      // Remove loading toast & show error toast (visible for 2s)
-      toast.error(error.message || "Error submitting form! Try again.", {
-        id: toastId,
-        duration: 2000,
-      });
+      // console.log(error);
+      toast.error(
+        error.response?.data?.message || "Error submitting form! Try again.",
+        {
+          id: toastId,
+          duration: 2000,
+        }
+      );
     }
   };
+
+  // const onSubmit = async (data) => {
+  //   const toastId = toast.loading("Sending your message...", {
+  //     duration: 3000,
+  //   });
+
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/contact/send", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (!response.ok)
+  //       throw new Error(result.message || "Something went wrong!");
+
+  //     setMailData(result);
+
+  //     toast.success(result.message || "Message sent successfully!", {
+  //       id: toastId,
+  //       duration: 2000,
+  //     });
+  //   } catch (error) {
+  //     toast.error(error.message || "Error submitting form! Try again.", {
+  //       id: toastId,
+  //       duration: 2000,
+  //     });
+  //   }
+  // };
 
   return (
     <div className="relative">
