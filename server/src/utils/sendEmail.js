@@ -252,8 +252,8 @@ export const sendEnquiryMail = async (fname, lname, email, message) => {
       transporter.sendMail(userMailOptions),
     ]);
 
-    console.log("Admin email sent:", adminMailResponse.messageId);
-    console.log("User email sent:", userMailResponse.messageId);
+    // console.log("Admin email sent:", adminMailResponse.messageId);
+    // console.log("User email sent:", userMailResponse.messageId);
 
     return { success: true };
   } catch (error) {

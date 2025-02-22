@@ -15,7 +15,7 @@ export const sendMail = asyncHandler(async (req, res) => {
   fname = capitalize(fname);
   lname = capitalize(lname);
 
-  console.log("Sending email with details:", { fname, lname, email, message });
+  // console.log("Sending email with details:", { fname, lname, email, message });
 
   const response = await sendEnquiryMail(fname, lname, email, message);
 
