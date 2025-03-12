@@ -34,7 +34,7 @@ export const contactInformations = [
     title: "Contact Us :",
     address: null,
     contact: {
-      mobile: "+91 9876543210",
+      mobile: "+91 9962015898",
       email: "contact@saibrindhavanam.com",
     },
   },

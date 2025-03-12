@@ -58,14 +58,14 @@ export const ppContent = {
   grievanceOfficeData: {
     title: "Grievance Officer",
     details: [
-      { id: 1, label: "Name of the Officer", value: "[Insert Name]" },
-      { id: 2, label: "Designation", value: "[Insert Designation]" },
+      { id: 1, label: "Name of the Officer", value: "Udaya Rekha" },
+      { id: 2, label: "Designation", value: "Head - Legal & Operations" },
       {
         id: 3,
         label: "Company Name & Address",
-        value: "[Insert Company Name & Address]",
+        value: "Chennai",
       },
-      { id: 4, label: "Phone", value: "[Insert Phone Number]" },
+      { id: 4, label: "Phone", value: "9361624563" },
       {
         id: 5,
         label: "Available",
