@@ -10,11 +10,7 @@ dotenv.config();
 const PORT = 5000;
 const app = express();
 
-const whitelist = [
-  process.env.CLIENT_APP_BASE_URL,
-  "http://localhost:8080",
-  "http://localhost:5173",
-];
+const whitelist = [process.env.CLIENT_APP_BASE_URL, "http://localhost:5173"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.some((url) => origin && origin.startsWith(url)) || !origin) {
@@ -34,7 +30,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/contact", contactRoute);
-
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
