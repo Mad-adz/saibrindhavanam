@@ -23,7 +23,12 @@ const app = express();
 //   optionsSuccessStatus: 200,
 // };
 
-const whitelist = [process.env.CLIENT_APP_BASE_URL.replace(/\/$/, "")]; // Remove trailing slash
+const whitelist = [
+  process.env.CLIENT_APP_BASE_URL.replace(
+    /\/$/,
+    "https://www.saibrindhavanam.com"
+  ),
+]; // Remove trailing slash
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -44,9 +49,18 @@ const corsOptions = {
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
     console.log("Handling preflight request...");
-    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_APP_BASE_URL);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      process.env.CLIENT_APP_BASE_URL
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
     res.setHeader("Access-Control-Allow-Credentials", "true");
     return res.sendStatus(200);
   }
