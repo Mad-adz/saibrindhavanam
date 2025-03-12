@@ -103,8 +103,8 @@ const adminTemplate = `
         <p><span>Message : </span><%=message%></p>
       </section>
       <footer>
-        <p>Sent with &hearts; from Virtual India.</p>
-        <p>&copy; 2025 Virtual India. All rights reserved.</p>
+        <p>Sent with &hearts; from Shri Sai Brindhavanam Foundation.</p>
+        <p>&copy; 2025 Mad Adz. All rights reserved.</p>
       </footer>
     </div>
   </body>
@@ -202,9 +202,9 @@ const userTemplate = `
         <p>- SSBF </p>
       </section>
       <footer>
-        <p>Sent with &hearts; from Virtual India.</p>
+        <p>Sent with &hearts; from Shri Sai Brindhavanam Foundation.</p>
         <p></p>
-        <p>&copy; 2025 Virtual India. All rights reserved.</p>
+        <p>&copy; 2025 Mad Adz. All rights reserved.</p>
       </footer>
     </div>
   </body>
