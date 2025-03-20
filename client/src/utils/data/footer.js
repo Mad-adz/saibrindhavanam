@@ -66,6 +66,11 @@ export const footerLinks = [
       { id: 2, label: "Festivals", path: "/temple/festivals" },
       { id: 3, label: "Terms & Conditions", path: "/terms-and-conditions" },
       { id: 4, label: "Privacy Policy", path: "/privacy-policy" },
+      {
+        id: 5,
+        label: "Refund And Cancellation Policy",
+        path: "/refund-and-cancellation",
+      },
     ],
   },
 ];
