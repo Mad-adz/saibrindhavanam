@@ -26,5 +26,6 @@ export const Festivals = lazy(() => import("./temple/Festivals"));
 
 export const TermsAndConditions = lazy(() => import("./TermsAndConditions"));
 export const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
+export const RefundAndCancellation = lazy(() => import("./RefundAndCancellation"));
 
 export const NotFound = lazy(() => import("./NotFound"));

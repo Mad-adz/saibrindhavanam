@@ -22,6 +22,7 @@ import {
   OldAgeHome,
   Orphanage,
   PrivacyPolicy,
+  RefundAndCancellation,
   SchoolRenovations,
   TermsAndConditions,
   Tourism,
@@ -45,6 +46,10 @@ const router = createBrowserRouter(
               element={<TermsAndConditions />}
             />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route
+              path="refund-and-cancellation"
+              element={<RefundAndCancellation />}
+            />
 
             <Route path="initiatives">
               <Route path="annadhaanam" element={<Annadhaanam />} />
