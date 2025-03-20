@@ -44,7 +44,7 @@ const PrivacyPolicy = () => {
               ))}
             </div>
           </address>
-          <div>
+          {/* <div>
             <h2 className="text-2xl font-bold mb-2 text-orange-500">
               {ppContent.refund_and_cancellation.title}:
             </h2>
@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
                 </li>
               ))}
             </ol>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
