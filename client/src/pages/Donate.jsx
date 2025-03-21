@@ -1,7 +1,86 @@
 import { donateBanner } from "../assets/images";
 import { PanoramicBanner } from "../components";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+// import { TbDeviceMobileDollar, TbCreditCard } from "react-icons/tb";
 
 const Donate = () => {
+  const formSchema = z.object({
+    fname: z
+      .string()
+      .min(1, "First Name is required!")
+      .min(3, { message: "First name must be at least 3 characters!" }),
+    lname: z.string().min(1, "Last Name is required!"),
+    email: z
+      .string()
+      .min(1, { message: "Email is required!" })
+      .email({ message: "Email format is incorrect!" }),
+    // .min(10, { message: "Mobile number must be 10 digits!" })
+    // .max(10, { message: "Mobile number must be 10 digits!" })
+    // .regex(/^[0-9]{10}$/, {
+    //   message: "Mobile number must contain only digits!",
+    // }),
+    mobile: z
+      .string()
+      .length(10, { message: "Mobile number must be exactly 10 digits!" })
+      .regex(/^\d+$/, { message: "Mobile number must contain only digits!" }),
+
+    amount: z.string().min(1, "Amount is required!"),
+    comments: z.string(),
+  });
+
+  const form = useForm({
+    defaultValues: {
+      fname: "",
+      lname: "",
+      email: "",
+      mobile: "",
+      amount: "",
+      comments: "",
+    },
+    resolver: zodResolver(formSchema),
+  });
+
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = form;
+
+  useEffect(() => {
+    if (
+      errors.fname ||
+      errors.lname ||
+      errors.email ||
+      errors.mobile ||
+      errors.amount ||
+      errors.comments
+    ) {
+      toast.dismiss();
+    }
+    if (errors.fname) {
+      toast.error(errors.fname.message);
+    } else if (errors.lname) {
+      toast.error(errors.lname.message);
+    } else if (errors.email) {
+      toast.error(errors.email.message);
+    } else if (errors.mobile) {
+      toast.error(errors.mobile.message);
+    } else if (errors.amount) {
+      toast.error(errors.amount.message);
+    } else if (errors.comments) {
+      toast.error(errors.comments.message);
+    }
+  }, [errors]);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    reset();
+  };
   return (
     <>
       <div className="relative">
@@ -52,6 +131,139 @@ const Donate = () => {
               <span className="text-zinc-700 font-semibold">MICR Code : </span>
               600229105
             </p>
+          </div>
+        </div>
+      </section>
+      <section className="bg-amber-50 py-10">
+        <div className="container mx-auto h-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+          <div className="w-full max-w-xl gap-4 mx-auto bg-amber-100/30 rounded-md shadow-md px-4 py-6 md:px-8 md:py-10">
+            <h2 className="text-2xl text-center font-bold mb-8 text-orange-500">
+              Donation Form
+            </h2>
+            <form
+              className="flex flex-col gap-4 "
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="mb-2 text-left font-medium !text-zinc-900">
+                    First Name
+                  </label>
+                  <input
+                    {...register("fname")}
+                    placeholder="First Name"
+                    name="fname"
+                    className="block w-full px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 text-left font-medium !text-zinc-900">
+                    Last Name
+                  </label>
+                  <input
+                    {...register("lname")}
+                    placeholder="Last Name"
+                    name="lname"
+                    className="block w-full px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="mb-2 text-left font-medium !text-zinc-900">
+                    Email
+                  </label>
+                  <input
+                    {...register("email")}
+                    placeholder="name@example.com"
+                    name="email"
+                    type="email"
+                    className="block w-full px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 text-left font-medium !text-zinc-900">
+                    Mobile Number
+                  </label>
+                  <input
+                    {...register("mobile")}
+                    placeholder="000-000-0000"
+                    name="mobile"
+                    className="block w-full px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-2 text-left font-medium !text-zinc-900">
+                  Donation Amount (₹)
+                </label>
+                <input
+                  {...register("amount")}
+                  placeholder="0"
+                  name="amount"
+                  className="block w-full px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-gray-200 rounded-lg focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                />
+              </div>
+
+              {/* <div>
+                <p className="mb-2 text-left font-medium !text-zinc-900">
+                  Payment Method
+                </p>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      id="card"
+                      name="paymentMethod"
+                      value="Debit or Credit Card"
+                      className="accent-orange-400 h-4 w-4"
+                    />
+                    <label
+                      htmlFor="card"
+                      className="flex items-center space-x-2"
+                    >
+                      <TbCreditCard className="text-xl font-medium text-orange-500" />
+                      <span>Debit or Credit Card</span>
+                    </label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      id="upi"
+                      name="paymentMethod"
+                      value="UPI or Wallet"
+                      className="accent-orange-400 h-4 w-4"
+                    />
+                    <label
+                      htmlFor="upi"
+                      className="flex items-center space-x-2"
+                    >
+                      <TbDeviceMobileDollar className="text-xl font-medium text-orange-500" />
+                      <span>UPI or Wallet</span>
+                    </label>
+                  </div>
+                </div>
+              </div> */}
+
+              <div>
+                <label className="mb-2 text-left font-medium !text-zinc-900">
+                  Comments
+                </label>
+                <textarea
+                  {...register("comments")}
+                  className="block w-full h-24 px-4 py-2 mt-2 text-zinc-700 placeholder-zinc-400 bg-white border border-zinc-200 rounded-lg md:h-36 focus:border-orange-300 focus:ring-orange-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  placeholder="Type your comments here..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full md:w-2/3 lg:w-1/2 mx-auto px-4 py-2 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-orange-500 rounded-lg hover:bg-orange-400 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50 cursor-pointer"
+              >
+                Donate
+              </button>
+            </form>
           </div>
         </div>
       </section>
