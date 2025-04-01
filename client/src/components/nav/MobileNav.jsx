@@ -23,13 +23,13 @@ const MobileNav = () => {
     },
   };
   return (
-    <div>
-      <button className="lg:hidden z-[999] relative" onClick={toggleDrawer}>
+    <>
+      <button className="lg:hidden z-[999] relative text-3xl text-orange-500 mt-1.5" onClick={toggleDrawer}>
         {isOpen ? <LuX /> : <LuMenu />}
       </button>
 
       <motion.div
-        className="fixed left-0 right-0 top-20 overflow-y-auto h-full font-semibold bg-amber-100/70 backdrop-blur p-6 pb-20"
+        className="fixed left-0 right-0 top-20 overflow-y-auto h-full font-semibold bg-amber-100/90 backdrop-blur p-6 pb-20"
         initial={{ x: "-100%" }}
         animate={{ x: isOpen ? "0%" : "-100%" }}
       >
@@ -84,7 +84,7 @@ const MobileNav = () => {
           })}
         </ul>
       </motion.div>
-    </div>
+    </>
   );
 };
 
