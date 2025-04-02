@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 import contactRoute from "./routes/contactRoute.js";
+import donationRoute from "./routes/donationRoute.js";
+// import { redis } from "./config/redis/upstashRedis.js";
 
 dotenv.config();
 
@@ -45,7 +47,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// ✅ Handle OPTIONS preflight requests before routes
+// Handle OPTIONS preflight requests before routes
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
     console.log("Handling preflight request...");
@@ -75,6 +77,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/contact", contactRoute);
+app.use("/api/donation", donationRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
@@ -85,4 +88,5 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  // console.log(`${redis.options.host}:${redis.options.port}`);
 });
