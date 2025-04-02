@@ -24,7 +24,10 @@ const MobileNav = () => {
   };
   return (
     <>
-      <button className="lg:hidden z-[999] relative text-3xl text-orange-500 mt-1.5" onClick={toggleDrawer}>
+      <button
+        className="lg:hidden z-[999] relative text-3xl text-orange-500 mt-1.5"
+        onClick={toggleDrawer}
+      >
         {isOpen ? <LuX /> : <LuMenu />}
       </button>
 

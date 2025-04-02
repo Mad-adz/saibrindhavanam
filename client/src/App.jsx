@@ -21,6 +21,7 @@ import {
   HomeRenovations,
   OldAgeHome,
   Orphanage,
+  PaymentStatus,
   PrivacyPolicy,
   RefundAndCancellation,
   SchoolRenovations,
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
             <Route path="connect" element={<Contact />} />
             <Route path="tourism" element={<Tourism />} />
             <Route path="donate" element={<Donate />} />
+            <Route path="payment-status/:merchantOrderId" element={<PaymentStatus />} />
             <Route
               path="terms-and-conditions"
               element={<TermsAndConditions />}
