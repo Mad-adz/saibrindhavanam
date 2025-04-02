@@ -4,10 +4,16 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { apiClient } from "../api/axios";
+import { useNavigate } from "react-router-dom";
+
 // import { TbDeviceMobileDollar, TbCreditCard } from "react-icons/tb";
 
 const Donate = () => {
+  const navigate = useNavigate();
+  const [paymentDetails, setPaymentDetails] = useState(null);
+  console.log(paymentDetails);
   const formSchema = z.object({
     fname: z
       .string()
@@ -18,18 +24,20 @@ const Donate = () => {
       .string()
       .min(1, { message: "Email is required!" })
       .email({ message: "Email format is incorrect!" }),
-    // .min(10, { message: "Mobile number must be 10 digits!" })
-    // .max(10, { message: "Mobile number must be 10 digits!" })
-    // .regex(/^[0-9]{10}$/, {
-    //   message: "Mobile number must contain only digits!",
-    // }),
     mobile: z
       .string()
+      .min(1, { message: "Mobile number is required!" })
       .length(10, { message: "Mobile number must be exactly 10 digits!" })
       .regex(/^\d+$/, { message: "Mobile number must contain only digits!" }),
-
-    amount: z.string().min(1, "Amount is required!"),
-    comments: z.string(),
+    amount: z
+      .string()
+      .min(1, "Amount is required!")
+      .transform((val) => (val.trim() === "" ? NaN : Number(val)))
+      .refine((val) => !isNaN(val), {
+        message: "Amount must be a valid number!",
+      })
+      .refine((val) => val > 0, { message: "Amount must be greater than 0!" }),
+    comments: z.string().min(1, "Comments is required!"),
   });
 
   const form = useForm({
@@ -77,9 +85,28 @@ const Donate = () => {
     }
   }, [errors]);
 
+  useEffect(() => {
+    if (paymentDetails) {
+      if (paymentDetails.checkoutPageUrl) {
+        window.location.href = paymentDetails.checkoutPageUrl;
+        // window.open(
+        //   paymentDetails.checkoutPageUrl,
+        //   "_blank",
+        //   "noopener,noreferrer"
+        // );
+      }
+      reset();
+    }
+  }, [navigate, paymentDetails, reset]);
+
   const onSubmit = async (data) => {
-    console.log(data);
-    reset();
+    try {
+      console.log(data);
+      const response = await apiClient.post("api/donation/pay", data);
+      setPaymentDetails(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -95,7 +122,7 @@ const Donate = () => {
           <h2 className="text-2xl font-bold mb-2 text-orange-500">Donations</h2>
           <p className="mb-10 indent-10 font-normal !text-lg !text-zinc-500">
             <span className="text-zinc-500 font-semibold">
-              SHRI SAI BRINDHAVANAM FOUNDATION
+              SHRI SAI BRINDHAVANAM FOUNDATION{" "}
             </span>
             is the authorized body to control and manage the day to day
             activities for the temple. It also provide various other services

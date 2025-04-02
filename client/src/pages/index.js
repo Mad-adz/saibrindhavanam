@@ -28,4 +28,4 @@ export const TermsAndConditions = lazy(() => import("./TermsAndConditions"));
 export const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
 export const RefundAndCancellation = lazy(() => import("./RefundAndCancellation"));
 
-export const NotFound = lazy(() => import("./NotFound"));
+export const PaymentStatus = lazy(() => import("./PaymentStatus"));
