@@ -17,3 +17,4 @@ export const ContactCard = lazy(() => import("./ContactCard"));
 export const SpringModal = lazy(() => import("./SpringModal"));
 
 export const Loader = lazy(() => import("./Loader"));
+export const PaymentLoader = lazy(() => import("./PaymentLoader"));
