@@ -16,7 +16,9 @@ import { sendDonationMail } from "../utils/donationEmail.js";
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const clientVersion = Number(process.env.CLIENT_VERSION);
-const env = Env.SANDBOX; // Env.PRODUCTION
+const env = Env.PRODUCTION;
+
+// const env = Env.SANDBOX; // Env.PRODUCTION
 
 const client = StandardCheckoutClient.getInstance(
   clientId,
